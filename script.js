@@ -3,8 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 // We already have the event listener set up to call the function writePassword on button click
-// When the button is clicked, we ask the user to feed in criteria for the password
-// Ask for Password length
+
 // If the users length is less than 8, or more than 128, we ask them to submit a valid length
 // Ask for Password contents
 // Do we want lowercase letters?
@@ -86,10 +85,11 @@ var specialcharacters = [
   "?",
 ];
 var selectedCharacters = [];
-
+// When the button is clicked, we ask the user to feed in criteria for the password
 function generatePassword() {
   var passwordLength = 0;
   while (8 > passwordLength || 128 < passwordLength) {
+    // Ask for Password length
     passwordLength = parseInt(
       prompt(
         "How long would you like to make your password? (between 8 and 128)"
@@ -99,20 +99,20 @@ function generatePassword() {
       alert("Please select a valid length");
     }
   }
-  // include lowercase
+  // include lowercase?
   var confirmLowerCase = confirm(
     "Would you like to include lowercase letters?"
   );
-  // include capitals
+  // include capitals?
   var confirmCapitals = confirm("would you like to include capital leters? ");
-  // include characters
+  // include characters?
   var confirmCharacters = confirm("Would you like special characters?");
-  // include numbers
+  // include numbers?
   var confirmNumbers = confirm("WOuld you like to include numbers?");
 
-  // for each confirm we push the array into empty
+  // for each confirm we push the array into selectedCharacters
   if (confirmCapitals) {
-    empty = upperCase.concat(selectedCharacters);
+    selectedCharacters = upperCase.concat(selectedCharacters);
   }
   if (confirmLowerCase) {
     selectedCharacters = lowerCase.concat(selectedCharacters);
@@ -125,7 +125,7 @@ function generatePassword() {
   }
   var password = "";
   for (let i = 0; i < passwordLength; i++) {
-    // select randomly from array empty
+    // select randomly from array selectedCharacters
 
     var randomIndex = Math.floor(Math.random() * selectedCharacters.length);
     password = password + selectedCharacters[randomIndex];
